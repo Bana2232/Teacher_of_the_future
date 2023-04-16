@@ -1,5 +1,7 @@
 from aiogram import Bot, Dispatcher, types, executor
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from aiogram.types import InputMediaPhoto
+from Klava import ikb, ikbb
+from Courses import mat_course, opisanie
 
 TOKEN_API = '5927151454:AAFJHukxbmwggEEiMPFXp8Pzkh5CTaLiqcE'
 HELP = '''
@@ -10,18 +12,13 @@ HELP = '''
 bot = Bot(TOKEN_API)
 dp = Dispatcher(bot)
 
-ikb = InlineKeyboardMarkup(row_width=4)
-ib1 = InlineKeyboardButton(text='Математика🎲', callback_data='math')
-ib2 = InlineKeyboardButton(text='Русский язык📔', callback_data='rus')
-ib3 = InlineKeyboardButton(text='Химия🧪', callback_data='chemistry')
-ib4 = InlineKeyboardButton(text='Биология🌱', callback_data='bio')
-ib5 = InlineKeyboardButton(text='Физика⚙️', callback_data='phy')
-ib6 = InlineKeyboardButton(text='Информатика💻', callback_data='inf')
-ikb.add(ib1, ib2).add(ib3, ib4).add(ib5, ib6)
+current = dict()
 
 
 @dp.message_handler(commands=['start'])
 async def start_command(message: types.Message):
+    current[message.chat.id] = 0
+
     await bot.send_message(chat_id=message.from_user.id,
                            text="Добро пожаловать, ознакомьтесь списком возможностей коммандой "
                                 "/help")
@@ -37,10 +34,47 @@ async def courses(message: types.Message):
     await bot.send_message(chat_id=message.from_user.id, text="Пожалуйста, выберите предмет!", reply_markup=ikb)
 
 
+@dp.callback_query_handler(text="next")
+async def funct(callback: types.CallbackQuery):
+    current[callback.message.chat.id] += 1
+
+    if current[callback.message.chat.id] == len(mat_course):
+        current[callback.message.chat.id] = len(mat_course) - 1
+
+    file = InputMediaPhoto(mat_course[current[callback.message.chat.id]],
+                           caption=opisanie[current[callback.message.chat.id]])
+
+    await callback.message.edit_media(file)
+    await callback.message.edit_reply_markup(reply_markup=ikbb)
+
+
+@dp.callback_query_handler(text="previous")
+async def funct(callback: types.CallbackQuery):
+    current[callback.message.chat.id] -= 1
+
+    if current[callback.message.chat.id] == -1:
+        current[callback.message.chat.id] = 0
+
+    file = InputMediaPhoto(mat_course[current[callback.message.chat.id]],
+                           caption=opisanie[current[callback.message.chat.id]])
+
+    await callback.message.edit_media(file)
+    await callback.message.edit_reply_markup(reply_markup=ikbb)
+
+
+@dp.callback_query_handler(text='menu')
+async def kkk(callback: types.CallbackQuery):
+    await callback.message.answer(text='hello')
+
+
 @dp.callback_query_handler()
 async def subjects(callback: types.CallbackQuery):
-    await callback.message.answer(callback.data)
+    if callback.data == 'math':
+        await bot.send_photo(chat_id=callback.message.chat.id,
+                             photo=str(mat_course[current[callback.message.chat.id]]),
+                             caption=str(opisanie[current[callback.message.chat.id]]),
+                             reply_markup=ikbb)
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    executor.start_polling(dp, skip_updates=True)

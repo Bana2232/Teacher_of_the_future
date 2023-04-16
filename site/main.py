@@ -10,7 +10,6 @@ def func():
 
 @app.route('/index', methods=['POST', 'GET'])
 def index():
-    print(request.method)
     if request.method == "GET":
         return render_template("sign_in_page.html")
 
