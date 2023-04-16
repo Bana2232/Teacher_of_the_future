@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'Matricha';
+	src: url('../fonts/matricha.eot'); /* IE 9 Compatibility Mode */
+	src: url('../fonts/matricha.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+		url('../fonts/matricha.woff2') format('woff2'), /* Super Modern Browsers */
+		url('../fonts/matricha.woff') format('woff'), /* Firefox >= 3.6, any other modern browser */
+		url('../fonts/matricha.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('../fonts/matricha.svg#matricha') format('svg'); /* Chrome < 4, Legacy iOS */
+}

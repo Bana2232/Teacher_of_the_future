@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}{% endblock %}
+
+    <title>Header</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/style_for_header.css">
+    {% block styles %}{% endblock %}
+
+</head>
+<body>
+<section class="section_header">
+    <header class="header">
+        <a href="#main">
+            <img src="../hat.png" class="logo">
+        </a>
+        <nav>
+            <ul class="menu">
+                <a href="#main">
+                    <li>Главная</li>
+                </a>
+                <a href="#about_us">
+                    <li>О нас</li>
+                </a>
+                <li>
+                    <a href="sign_up"><input class="button_sign_up" type="button" value="Зарегистрироваться"></a>
+                    <a href="sign_in"><input class="button_sign_in" type="button" value="Войти"></a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+</section>
+<!--Контент на странице-->
+{% block content %}{% endblock %}
+
+<!--Футер-->
+<!--Какая-то разметка....-->
+
+</body>
+</html>
