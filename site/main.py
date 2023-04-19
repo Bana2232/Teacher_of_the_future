@@ -16,10 +16,14 @@ def index():
 
     elif request.method == "POST":
         start_session("main_database.db")
-        check_user_when_logging_in(request.form.get("login"), request.form.get("password"))
+        check = check_user_when_logging_in(request.form.get("login"), request.form.get("password"))
 
         close_session()
-        return "Данные отправлены"
+
+        if check:
+            return "Добро пожаловать"
+
+        return "Всё, давай, салам алейкум"
 
 
 if __name__ == '__main__':

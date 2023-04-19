@@ -15,11 +15,12 @@ def close_session() -> None:
 
 def check_user_when_logging_in(login: str, password: str) -> bool:
     """Проверяет зарегистрирован ли пользователь в системе"""
+
     is_exists = cur.execute(f'''SELECT login, password
                 FROM User_data
                 WHERE (login = "{login}") AND (password = "{password}")''').fetchall()
 
-    if (is_exists[0] == login) and (password[1] == password):
-        return True
+    if not is_exists:
+        return False
 
-    return False
+    return True
