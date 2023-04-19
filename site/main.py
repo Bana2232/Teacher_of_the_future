@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect
+from database.sql_functions import start_session, close_session, check_user_when_logging_in
 
 app = Flask(__name__)
 
@@ -14,9 +15,10 @@ def index():
         return render_template("sign_in_page.html")
 
     elif request.method == "POST":
-        print(request.form.get("login"))
-        print(request.form.get("password"))
+        start_session("main_database.db")
+        check_user_when_logging_in(request.form.get("login"), request.form.get("password"))
 
+        close_session()
         return "Данные отправлены"
 
 
