@@ -1,9 +1,10 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
 from login_for_site.loginform import LoginForm
+from config import SECRET_KEY
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "104479aad65a9c7479ef411a75c58d4fe2cb2d3bd5653e9171f2ec4e996d9fce"
+app.config["SECRET_KEY"] = SECRET_KEY
 
 
 @app.route('/')
@@ -25,7 +26,7 @@ def sign_in():
         if check:
             return "Добро пожаловать"
 
-        return "Всё, давай, салам алейкум"
+        return "Всё давай, салам алейкум"
 
 
 @app.route("/log_in", methods=["GET", "POST"])
