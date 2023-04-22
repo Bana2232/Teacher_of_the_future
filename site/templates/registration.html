@@ -4,6 +4,12 @@
 <title>{{ title }}</title>
 {% endblock %}
 
+{% block styles %}
+<!-- Стили подключить можно здесь-->
+<link href="../static/styles/style_for_labels_and_fields.css" rel="stylesheet">
+<link href="../static/styles/fonts.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <form action="" method="post" novalidate>
     <div>
@@ -11,11 +17,8 @@
     </div>
     {% for field in form if field.name != 'csrf_token' %}
     <div>
-        {{ field.label() }}
-        {{ field() }}
-        {% for error in field.errors %}
-        <div class="error">{{ error }}</div>
-        {% endfor %}
+        {{ field.label(class="label") }}
+        {{ field(class="field", placeholder="Логин") }}
     </div>
     {% endfor %}
 </form>

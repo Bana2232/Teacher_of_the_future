@@ -1,14 +1,3 @@
-@font-face {
-    font-family: "Montserrat";
-    src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
-}
-
-@font-face
-{       
-    font-family: "Matricha";
-    src: url("../fonts/Matricha/matricha.ttf") format("truetype");
-}
-
 * {
     margin: 0;
     padding: 0;
