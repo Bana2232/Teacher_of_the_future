@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
+from site
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "104479aad65a9c7479ef411a75c58d4fe2cb2d3bd5653e9171f2ec4e996d9fce"
@@ -27,10 +28,15 @@ def sign_in():
         return "Всё, давай, салам алейкум"
 
 
-@app.route("/log_in")
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
     if request.method == "GET":
-        return render_template("registration.html")
+        form = LoginForm()
+
+        if form.validate_on_submit():
+            return redirect('/success')
+
+        return render_template("registration.html", title="Регистрация", form=form)
 
     elif request.method == "POST":
         pass
