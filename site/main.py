@@ -1,9 +1,9 @@
+import loginform
 from flask import Flask, request, render_template
 
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
 from database import db_session
 
-from . import loginform
 from config import SECRET_KEY
 
 app = Flask(__name__)
