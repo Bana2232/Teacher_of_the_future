@@ -9,8 +9,8 @@ def func():
     return "Главное меню"
 
 
-@app.route('/index', methods=['POST', 'GET'])
-def index():
+@app.route('/sign_in', methods=['POST', 'GET'])
+def sign_in():
     if request.method == "GET":
         return render_template("sign_in_page.html")
 
