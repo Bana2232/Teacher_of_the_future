@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
 from database import db_session
 
-from login_for_site.loginform import LoginForm
+from . import loginform
 from config import SECRET_KEY
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ def sign_in():
 
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-    form = LoginForm()
+    form = loginform.LoginForm()
 
     if form.validate_on_submit():
         return "Success"
