@@ -1,5 +1,8 @@
 from flask import Flask, request, render_template
+
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
+from database import db_session
+
 from login_for_site.loginform import LoginForm
 from config import SECRET_KEY
 
@@ -40,4 +43,5 @@ def log_in():
 
 
 if __name__ == '__main__':
+    db_session.global_init("database/main_database.db")
     app.run(port=8080, host='127.0.0.1')
