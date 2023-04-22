@@ -24,7 +24,7 @@ def sign_in():
         close_session()
 
         if check:
-            return "Добро пожаловать"
+            return render_template("personal_account.html")
 
         return "Всё давай, салам алейкум"
 
