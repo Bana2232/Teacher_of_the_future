@@ -7,12 +7,12 @@ class Courses(SqlAlchemyBase):
     __tablename__ = 'Courses'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,
-                           primary_key=True, autoincrement=True, index=True)
+                           primary_key=True, autoincrement=True, index=True, unique=True)
 
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    name = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
-    owner = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"))
+    owner = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"), nullable=False)
     subject = sqlalchemy.Column(sqlalchemy.Date, nullable=False)
 
     start_time = sqlalchemy.Column(sqlalchemy.DateTime, default="infinitive")
