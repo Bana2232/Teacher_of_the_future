@@ -4,12 +4,12 @@ from ..db_session import SqlAlchemyBase
 
 
 class User_data(SqlAlchemyBase):
-    __tablename__ = 'User_data'
+    __tablename__ = 'Users_data'
 
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Users.id"), primary_key=True, unique=True,
                                 index=True)
 
-    user = orm.relationship("Users")
+    user = orm.relationship("User", back_populates="data")
 
     login = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
     password = sqlalchemy.Column(sqlalchemy.String, nullable=False)

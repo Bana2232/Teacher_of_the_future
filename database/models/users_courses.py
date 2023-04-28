@@ -11,7 +11,7 @@ class User_courses(SqlAlchemyBase):
 
     user_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"))
 
-    user = orm.relationship("Users")
+    user = orm.relationship("Users", back_populates="user_courses")
 
     course_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Courses.id"))
     type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_courses_type.id"), nullable=False)
