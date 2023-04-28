@@ -3,7 +3,7 @@ from sqlalchemy import orm
 from ..db_session import SqlAlchemyBase
 
 
-class Courses(SqlAlchemyBase):
+class Course(SqlAlchemyBase):
     __tablename__ = 'Courses'
 
     id = sqlalchemy.Column(sqlalchemy.Integer,

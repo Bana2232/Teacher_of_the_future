@@ -1,5 +1,13 @@
 from flask import Flask, request, render_template, redirect
 
+from database.models.user_type import User_type
+from database.models.education import Education
+from database.models.teacher_category import Teacher_category
+
+from database.models.users import User
+from database.models.courses import Course
+from database.models.users_courses import User_courses
+
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
 from config import SECRET_KEY
 from database.db_session import global_init
