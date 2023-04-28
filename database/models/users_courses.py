@@ -10,5 +10,8 @@ class User_courses(SqlAlchemyBase):
                            primary_key=True, autoincrement=True, unique=True)
 
     user_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"))
+
+    user = orm.relationship("Users")
+
     course_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Courses.id"))
-    type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_courses_type,id"), nullable=False)
+    type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_courses_type.id"), nullable=False)

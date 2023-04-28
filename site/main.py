@@ -1,8 +1,11 @@
 from flask import Flask, request, render_template, redirect
+
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
+from config import SECRET_KEY
+from database.db_session import global_init
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "104479aad65a9c7479ef411a75c58d4fe2cb2d3bd5653e9171f2ec4e996d9fce"
+app.config["SECRET_KEY"] = SECRET_KEY
 
 
 @app.route('/')
@@ -37,4 +40,5 @@ def log_in():
 
 
 if __name__ == '__main__':
+    global_init("../database/main_database.db")
     app.run(port=8080, host='127.0.0.1')

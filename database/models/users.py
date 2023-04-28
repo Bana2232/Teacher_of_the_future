@@ -28,8 +28,9 @@ class User(SqlAlchemyBase):
     speciality = sqlalchemy.Column(sqlalchemy.String, nullable=False)
     type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_type.id"), nullable=False)
 
-    data = orm.relationship("User_data")
-    user_courses = orm.relationship("User_courses")
+    data = orm.relationship("User_data", back_populates="user")
+
+    user_courses = orm.relationship("User_courses", back_populates="user")
 
     # email = sqlalchemy.Column(sqlalchemy.String,
     #                           index=True, unique=True, nullable=True)
