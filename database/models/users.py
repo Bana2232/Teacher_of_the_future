@@ -30,7 +30,7 @@ class User(SqlAlchemyBase):
 
     data = orm.relationship("User_data", back_populates="user")
 
-    user_courses = orm.relationship("User_courses", back_populates="user")
+    user_courses = orm.relationship("User_courses_class", back_populates="user")
 
     # email = sqlalchemy.Column(sqlalchemy.String,
     #                           index=True, unique=True, nullable=True)

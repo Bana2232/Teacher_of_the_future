@@ -1,12 +1,10 @@
 from database.models.user_type import User_type
 from database.models.education import Education
 from database.models.teacher_category import Teacher_category
+
 from database.db_session import create_session
 
 is_started = False
-user_type = User_type()
-education = Education()
-category = Teacher_category()
 
 
 def start_init() -> None:
@@ -17,6 +15,10 @@ def start_init() -> None:
         raise Exception("Стартовая инициализация уже была осуществлена")
 
     else:
+        user_type = User_type()
+        education = Education()
+        category = Teacher_category()
+
         db_sess = create_session()
 
         user_type.type = "Teacher"

@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template, redirect
 
+from database.models.user_type import User_type
+
 from database.models.users import User
 from database.models.courses import Course
-from database.models.users_courses import User_courses
+from database.models.users_courses import User_courses_class
 
-# from database.start_init import start_init
+from database.start_init import start_init
 
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
 from config import SECRET_KEY
@@ -47,5 +49,5 @@ def log_in():
 
 if __name__ == '__main__':
     global_init("../database/main_database.db")
-    # start_init()
+    start_init()
     app.run(port=8080, host='127.0.0.1')
