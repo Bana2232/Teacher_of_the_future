@@ -18,4 +18,4 @@ class Course(SqlAlchemyBase):
     start_time = sqlalchemy.Column(sqlalchemy.DateTime, default="infinitive")
     end_time = sqlalchemy.Column(sqlalchemy.DateTime, default="infinitive")
 
-    # course_data = orm.relationship()
+    owner_ = orm.relationship("User", back_populates="user_owner")

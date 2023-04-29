@@ -32,8 +32,4 @@ class User(SqlAlchemyBase):
 
     user_courses = orm.relationship("User_courses_class", back_populates="user")
 
-    # email = sqlalchemy.Column(sqlalchemy.String,
-    #                           index=True, unique=True, nullable=True)
-    # hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    # created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-    #                                  default="222")
+    user_owner = orm.relationship("Course", back_populates="owner_")

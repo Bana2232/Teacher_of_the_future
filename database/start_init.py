@@ -9,7 +9,7 @@ is_started = False
 
 def start_init() -> None:
     """Добавляет константные строки в базу данных"""
-    global is_started, user_type, education, category
+    global is_started, user_type, education, category, db_sess
 
     if is_started:
         raise Exception("Стартовая инициализация уже была осуществлена")
@@ -29,8 +29,6 @@ def start_init() -> None:
         db_sess.add(education)
         db_sess.add(category)
 
-        db_sess.commit()
-
         user_type.type = "Student"
         education.level = "Higher"
         category.category = "First"
@@ -39,11 +37,9 @@ def start_init() -> None:
         db_sess.add(education)
         db_sess.add(category)
 
-        db_sess.commit()
-
         category.category = "Higher"
-
         db_sess.add(category)
+
         db_sess.commit()
 
         is_started = True
