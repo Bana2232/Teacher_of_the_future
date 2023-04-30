@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Freelancer portfolio</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <style>
+        body{
+        background: {{bggrad}}
+}
+.section_header {
+
+    background: {{bgheadgrad}}
+ }
+ .title-1 {
+    color: {{main_title_color}};
+    opacity: {{main_title_opacity}};
+    }
+    </style>
+</head>
+<body>
+
+<section class="section_header">
+    <header class="header">
+<h2 class="title-1">{{main_title}}</h2>
+    </header>
+</section>
+
+<main class="section">
+    <div class="container">
+
+
+        <ul class="projects">
+            {% block titles %}
+            <li class="project">
+                <a href="./project-page.html">
+                     <div class="bg">
+                        <img
+                            src={{firstimg}}
+                            alt="Project img"
+                            class="project__img"
+
+                    />
+                      <div class="blackout">
+                        <h4>Lorem ipsum</h4>
+
+                      </div>
+                    </div>
+                    <h3 class="project__title">{{first_title}}</h3>
+                </a>
+            </li>
+            <li class="project">
+                <a href="./project-page.html">
+                    <div class="bg">
+                        <img
+                            src={{secondimg}}
+                            alt="Project img"
+                            class="project__img"
+
+                    />
+                      <div class="blackout">
+                        <h4>Lorem ipsum</h4>
+
+                      </div>
+                    </div>
+                    <h3 class="project__title">
+                        {{second_title}}
+                    </h3>
+                </a>
+            </li>
+            <li class="project">
+                <a href="./project-page.html">
+                   <div class="bg">
+                        <img
+                            src={{thirdimg}}
+                            alt="Project img"
+                            class="project__img"
+
+                    />
+                      <div class="blackout">
+                        <h4>Lorem ipsum</h4>
+
+                      </div>
+                    </div>
+                    <h3 class="project__title">{{third_title}}</h3>
+                </a>
+            </li>
+
+{%endblock%}
+        </ul>
+    </div>
+</main>
+
+
+<script src="./js/main.js"></script>
+</body>
+</html>

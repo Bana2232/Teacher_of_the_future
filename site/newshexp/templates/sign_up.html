@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>
+    Создать аккаунт
+</title>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="C:\Users\Lenovo\Desktop\Finally\css\style_for_sign_up.css">
+{% endblock %}
+
+{% block content %}
+
+<!--Форма с регистрацией-->
+<form class="form_sign_in" method="post">
+    <h1>Создайте аккаунт</h1>
+    <input class="login_class" type="text" name="login" placeholder="Логин">
+    <input class="password_class" type="password" name="password" placeholder="Пароль">
+    <input class="tel_class" type="tel" name="tel" placeholder="Телефон">
+    <input class="confirm_class" type="submit" value="Создать">
+
+</form>
+
+{% endblock %}
