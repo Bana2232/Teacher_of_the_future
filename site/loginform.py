@@ -16,7 +16,7 @@ class LoginForm(FlaskForm):
     position = StringField('Должность', validators=[DataRequired()])
     category = FieldList('Ваша категория', validators=[DataRequired()])
     speciality = StringField('Специальность', validators=[DataRequired()])
-    type = FieldList('1111', validators=[DataRequired()])
+    # type = FieldList('1111', validators=[DataRequired()])
 
     password = PasswordField('Пароль', validators=[DataRequired()])
     submit = SubmitField('Зарегистрироваться')

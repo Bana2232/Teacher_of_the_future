@@ -9,8 +9,10 @@ from database.models.users_courses import User_courses_class
 from database.start_init import start_init
 
 from database.sql_functions import start_session, close_session, check_user_when_logging_in
-from config import SECRET_KEY
 from database.db_session import global_init
+
+from loginform import LoginForm
+from config import SECRET_KEY
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY
@@ -38,13 +40,14 @@ def sign_in():
         return "Всё, давай, салам алейкум"
 
 
-@app.route("/log_in")
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-    if request.method == "GET":
-        return render_template("registration.html")
+    form = LoginForm()
 
-    elif request.method == "POST":
-        pass
+    if form.validate_on_submit():
+        return "success"
+
+    return render_template("registration.html", form=form)
 
 
 if __name__ == '__main__':

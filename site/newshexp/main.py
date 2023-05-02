@@ -12,13 +12,16 @@ def func():
 def index():
     return render_template("index.html")
 
+
 @app.route('/projects')
 def projects():
     return render_template('projects.html')
 
+
 @app.route('/urok')
 def urok():
     return render_template('course_page.html')
+
 
 @app.route('/sign_up')
 def sign_up():
