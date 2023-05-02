@@ -14,7 +14,7 @@ class LoginForm(FlaskForm):
     work = StringField('Место работы', validators=[DataRequired()])
 
     position = StringField('Должность', validators=[DataRequired()])
-    category = FieldList('Ваша категория', validators=[DataRequired()])
+    # category = FieldList('Ваша категория', validators=[DataRequired()])
     speciality = StringField('Специальность', validators=[DataRequired()])
     # type = FieldList('1111', validators=[DataRequired()])
 

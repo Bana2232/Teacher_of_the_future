@@ -9,4 +9,4 @@ class User_type(SqlAlchemyBase):
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True, unique=True)
 
-    type = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    type = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)

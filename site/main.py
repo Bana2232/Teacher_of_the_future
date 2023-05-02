@@ -45,6 +45,10 @@ def log_in():
     form = LoginForm()
 
     if form.validate_on_submit():
+        user_data = [form.surname.data, form.name.data, form.patronymic.data, form.date.data, form.education.data,
+                     form.edu_name.data, form.work.data, form.position.data, "...", form.speciality.data, "...",
+                     form.password.data]
+        print(user_data)
         return "success"
 
     return render_template("registration.html", form=form)
@@ -52,5 +56,5 @@ def log_in():
 
 if __name__ == '__main__':
     global_init("../database/main_database.db")
-    start_init()
+    # start_init()
     app.run(port=8080, host='127.0.0.1')
