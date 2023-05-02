@@ -12,10 +12,10 @@ class Course(SqlAlchemyBase):
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
     description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
-    owner = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"), nullable=False)
+    owner_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"), nullable=False)
     subject = sqlalchemy.Column(sqlalchemy.Date, nullable=False)
 
     start_time = sqlalchemy.Column(sqlalchemy.DateTime, default="infinitive")
     end_time = sqlalchemy.Column(sqlalchemy.DateTime, default="infinitive")
 
-    owner_ = orm.relationship("User", back_populates="user_owner")
+    owner = orm.relationship("User", back_populates="user_owner")

@@ -32,4 +32,4 @@ class User(SqlAlchemyBase):
 
     user_courses = orm.relationship("User_courses_class", back_populates="user")
 
-    user_owner = orm.relationship("Course", back_populates="owner_")
+    user_owner = orm.relationship("Course", back_populates="owner")
