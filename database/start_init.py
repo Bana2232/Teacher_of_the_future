@@ -15,30 +15,36 @@ def start_init() -> None:
         raise Exception("Стартовая инициализация уже была осуществлена")
 
     else:
-        user_type = User_type()
-        education = Education()
-        category = Teacher_category()
+        user_type1 = User_type()
+        education1 = Education()
+        category1 = Teacher_category()
 
         db_sess = create_session()
 
-        user_type.type = "Teacher"
-        education.level = "Secondary"
-        category.category = "None"
+        user_type1.type = "Teacher"
+        education1.level = "Secondary"
+        category1.category = "None"
 
-        db_sess.add(user_type)
-        db_sess.add(education)
-        db_sess.add(category)
+        db_sess.add(user_type1)
+        db_sess.add(education1)
+        db_sess.add(category1)
 
-        user_type.type = "Student"
-        education.level = "Higher"
-        category.category = "First"
+        user_type2 = User_type()
+        education2 = Education()
+        category2 = Teacher_category()
 
-        db_sess.add(user_type)
-        db_sess.add(education)
-        db_sess.add(category)
+        user_type2.type = "Student"
+        education2.level = "Higher"
+        category2.category = "First"
 
-        category.category = "Higher"
-        db_sess.add(category)
+        db_sess.add(user_type2)
+        db_sess.add(education2)
+        db_sess.add(category2)
+
+        category3 = Teacher_category()
+
+        category3.category = "Higher"
+        db_sess.add(category3)
 
         db_sess.commit()
 
