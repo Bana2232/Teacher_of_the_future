@@ -37,10 +37,36 @@ def log_in():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user_data = [form.surname.data, form.name.data, form.patronymic.data, form.date.data, form.education.data,
-                     form.edu_name.data, form.work.data, form.position.data, "...", form.speciality.data, "...",
+        user = User()
+        db_sess = db_session.create_session()
+
+        user_data = ["...", form.speciality.data, "...",
                      form.password.data]
-        print(user_data)
+
+        user.name = form.name.data.capitalize()
+        user.surname = form.surname.data.capitalize()
+
+        if form.patronymic.data is not None:
+            user.patronymic = form.patronymic.data.capitalize()
+
+        user.date = form.date.data
+        user.education = form.education.data
+        user.edu_name = form.edu_name.data
+
+        if form.work.data is not None:
+            user.place_of_work = form.work.data
+
+        if form.position.data is not None:
+            user.position_at_work = form.position.data
+
+        user.teacher_category = 3
+
+        user.speciality = form.speciality.data.capitalize()
+        user.type = 2
+
+        db_sess.add(user)
+        db_sess.commit()
+
         return redirect("main_menu.html")
 
     return render_template("registration.html", form=form)

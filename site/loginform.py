@@ -18,5 +18,10 @@ class LoginForm(FlaskForm):
     speciality = StringField('Специальность', validators=[DataRequired()])
     # type = FieldList('1111', validators=[DataRequired()])
 
+    login = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
+
+    phone_number = StringField('Номер телефона', validators=[DataRequired()])
+    email = StringField('Адрес электронной почты', validators=[DataRequired()])
+
     submit = SubmitField('Зарегистрироваться')

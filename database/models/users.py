@@ -20,7 +20,7 @@ class User(SqlAlchemyBase):
     education = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Education.id"), nullable=False)
     edu_name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
 
-    place_of_work = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    place_of_work = sqlalchemy.Column(sqlalchemy.String, default="doesn't work")
     position_at_work = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     teacher_category = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Teacher_category.id"),
