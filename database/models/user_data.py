@@ -6,6 +6,8 @@ from ..db_session import SqlAlchemyBase
 class User_data(SqlAlchemyBase):
     __tablename__ = 'Users_data'
 
+    # id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, unique=True)
+
     user_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Users.id"), primary_key=True, unique=True,
                                 index=True)
 

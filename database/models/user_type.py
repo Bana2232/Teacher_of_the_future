@@ -10,3 +10,6 @@ class User_type(SqlAlchemyBase):
                            primary_key=True, autoincrement=True, unique=True)
 
     type = sqlalchemy.Column(sqlalchemy.String, nullable=False, unique=True)
+
+    def __repr__(self):
+        return f"{self.id} {self.type}"
