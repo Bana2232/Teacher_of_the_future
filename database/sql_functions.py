@@ -6,7 +6,7 @@ from database.models.users import User
 from hashlib import sha3_256
 from uuid import uuid4
 
-from .db_session import create_session
+from . import db_session
 from website.forms.registerform import ReqisterForm
 
 
@@ -60,10 +60,13 @@ def add_user(form: ReqisterForm) -> None:
 def check_user(email: str, password: str) -> bool:
     """Проверяет данные пользователя при входе"""
 
-    db_sess = create_session()
+    db_sess = db_session.create_session()
 
     user_data = db_sess.query(User_data).filter(User_data.email == email).first()
 
-    user = db_sess.query(User).filter(User.id == user_data.user_id).first()
+    user = db_sess.query(User).filter(User.id == user_data.user_id)
+
+    for i in user:
+        print(i)
 
     return check_password_hash(user_data.password, password)
