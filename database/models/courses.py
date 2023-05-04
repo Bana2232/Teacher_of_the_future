@@ -11,6 +11,7 @@ class Course(SqlAlchemyBase):
 
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
     description = sqlalchemy.Column(sqlalchemy.Text, nullable=True)
+    photo = sqlalchemy.Column(sqlalchemy.String, default="doesn't have")
 
     owner_id = sqlalchemy.Column(sqlalchemy.String, sqlalchemy.ForeignKey("Users.id"), nullable=False)
     subject = sqlalchemy.Column(sqlalchemy.Date, nullable=False)

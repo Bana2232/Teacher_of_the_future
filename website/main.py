@@ -4,9 +4,11 @@ from database import db_session
 from database.db_session import global_init
 from database.models.user_data import User_data
 from database.models.users import User
-from database.sql_functions import add_user
+from database.sql_functions import add_user, check_user
 
-from website.forms.loginform import ReqisterForm
+from website.forms.registerform import ReqisterForm
+from website.forms.loginform import LoginForm
+
 from config import SECRET_KEY
 
 app = Flask(__name__)
@@ -20,11 +22,14 @@ def func():
 
 @app.route('/sign_in', methods=['POST', 'GET'])
 def sign_in():
-    if request.method == "GET":
-        return render_template("sign_in_page.html")
+    form = LoginForm()
 
-    elif request.method == "POST":
-        return redirect("main_menu.html")
+    if form.validate_on_submit():
+        return "2"
+        # return redirect("main_menu.html")
+
+    print(str(check_user(form.email, form.password)))
+    return render_template("sign_in_page.html")
 
 
 @app.route("/log_in", methods=["GET", "POST"])
