@@ -3,7 +3,7 @@ from flask import Flask, request, render_template, redirect
 from database.db_session import global_init
 from database.sql_functions import add_user
 
-from website.forms.loginform import LoginForm
+from website.forms.loginform import ReqisterForm
 from config import SECRET_KEY
 
 app = Flask(__name__)
@@ -26,7 +26,7 @@ def sign_in():
 
 @app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-    form = LoginForm()
+    form = ReqisterForm()
 
     if form.validate_on_submit():
         add_user(form)

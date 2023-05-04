@@ -5,7 +5,7 @@ from hashlib import sha3_256
 from uuid import uuid4
 
 from . import db_session
-from website.forms.loginform import LoginForm
+from website.forms.loginform import ReqisterForm
 
 
 def hash_password(password: str):
@@ -19,7 +19,7 @@ def check_password(old: str, new: str):
     return password == sha3_256(salt.encode("utf-8") + new.encode("utf-8")).hexdigest()
 
 
-def add_user(form: LoginForm) -> None:
+def add_user(form: ReqisterForm) -> None:
     """Добавляет пользователя в базу данных"""
     user = User()
     user_data = User_data()
