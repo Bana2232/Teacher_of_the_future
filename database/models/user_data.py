@@ -15,6 +15,6 @@ class User_data(SqlAlchemyBase):
     password = sqlalchemy.Column(sqlalchemy.String, nullable=False)
 
     email = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
-    number = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
+    phone_number = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
 
     user = orm.relationship("User", back_populates="data")

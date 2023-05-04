@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, redirect
 
 from database import db_session
+
+from database.models.user_data import User_data
 from database.models.user_type import User_type
 
 from database.models.users import User
@@ -38,10 +40,8 @@ def log_in():
 
     if form.validate_on_submit():
         user = User()
+        user_data = User_data()
         db_sess = db_session.create_session()
-
-        user_data = ["...", form.speciality.data, "...",
-                     form.password.data]
 
         user.name = form.name.data.capitalize()
         user.surname = form.surname.data.capitalize()
@@ -67,6 +67,15 @@ def log_in():
         db_sess.add(user)
         db_sess.commit()
 
+        user_data.user_id = user.id
+        user_data.login = form.login.data
+        user_data.password = form.password.data
+        user_data.email = form.email.data
+        user_data.phone_number = form.phone_number.data
+
+        db_sess.add(user_data)
+        db_sess.commit()
+
         return redirect("main_menu.html")
 
     return render_template("registration.html", form=form)
@@ -78,5 +87,4 @@ if __name__ == '__main__':
     # db_sess = db_session.create_session()
     # for i in db_sess.query(User_type).filter(User_type.id == 1):
     #     print(i)
-
     app.run(port=8080, host='127.0.0.1')
