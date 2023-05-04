@@ -50,9 +50,9 @@ def log_in():
 if __name__ == '__main__':
     global_init("../database/main_database.db")
     # start_init()
-    db_sess = db_session.create_session()
+    # db_sess = db_session.create_session()
 
     # user = db_sess.query(User).filter(User.id == 1).first()
     # print(user.user_courses)
 
-    # app.run(port=8080, host='127.0.0.1')
+    app.run(port=8080, host='127.0.0.1')
