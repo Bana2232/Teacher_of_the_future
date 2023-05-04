@@ -5,7 +5,7 @@ from hashlib import sha3_256
 from uuid import uuid4
 
 from . import db_session
-from ..site.loginform import LoginForm
+from website.loginform import LoginForm
 
 
 def hash_password(password: str):
