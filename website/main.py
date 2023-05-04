@@ -1,6 +1,9 @@
 from flask import Flask, request, render_template, redirect
 
+from database import db_session
 from database.db_session import global_init
+from database.models.user_data import User_data
+from database.models.users import User
 from database.sql_functions import add_user
 
 from website.forms.loginform import ReqisterForm
@@ -40,8 +43,5 @@ if __name__ == '__main__':
     global_init("../database/main_database.db")
     # start_init()
     # db_sess = db_session.create_session()
-
-    # user = db_sess.query(User).filter(User.id == 1).first()
-    # print(user.user_courses)
 
     app.run(port=8080, host='127.0.0.1')
