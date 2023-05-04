@@ -8,11 +8,6 @@ from . import db_session
 from website.forms.loginform import ReqisterForm
 
 
-def hash_password(password: str):
-    salt = uuid4().hex
-    return sha3_256(salt.encode("utf-8") + password.encode()).hexdigest() + ":" + salt
-
-
 def check_password(old: str, new: str):
     password, salt = old.split(":")
 
@@ -50,8 +45,9 @@ def add_user(form: ReqisterForm) -> None:
     db_sess.commit()
 
     user_data.user_id = user.id
+
     user_data.login = form.login.data
-    user_data.password = form.password.data
+    user_data.set_password(form.password.data)
     user_data.email = form.email.data
     user_data.phone_number = form.phone_number.data
 
