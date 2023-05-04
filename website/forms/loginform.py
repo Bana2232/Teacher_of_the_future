@@ -20,6 +20,7 @@ class ReqisterForm(FlaskForm):
 
     login = StringField('Логин', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
+    password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
 
     phone_number = StringField('Номер телефона', validators=[DataRequired()])
     email = StringField('Адрес электронной почты', validators=[DataRequired()])
