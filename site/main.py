@@ -12,6 +12,7 @@ from database.models.users_courses import User_courses_class
 from database.start_init import start_init
 
 from database.db_session import global_init
+from database.sql_functions import add_user
 
 from loginform import LoginForm
 from config import SECRET_KEY
@@ -39,44 +40,9 @@ def log_in():
     form = LoginForm()
 
     if form.validate_on_submit():
-        user = User()
-        user_data = User_data()
-        db_sess = db_session.create_session()
+        add_user(form)
 
-        user.name = form.name.data.capitalize()
-        user.surname = form.surname.data.capitalize()
-
-        if form.patronymic.data is not None:
-            user.patronymic = form.patronymic.data.capitalize()
-
-        user.date = form.date.data
-        user.education = form.education.data
-        user.edu_name = form.edu_name.data
-
-        if form.work.data is not None:
-            user.place_of_work = form.work.data
-
-        if form.position.data is not None:
-            user.position_at_work = form.position.data
-
-        user.teacher_category = 3
-
-        user.speciality = form.speciality.data.capitalize()
-        user.type = 2
-
-        db_sess.add(user)
-        db_sess.commit()
-
-        user_data.user_id = user.id
-        user_data.login = form.login.data
-        user_data.password = form.password.data
-        user_data.email = form.email.data
-        user_data.phone_number = form.phone_number.data
-
-        db_sess.add(user_data)
-        db_sess.commit()
-
-        return redirect("main_menu.html")
+        return redirect("/")
 
     return render_template("registration.html", form=form)
 
