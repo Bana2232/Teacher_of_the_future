@@ -1,20 +1,9 @@
 from flask import Flask, request, render_template, redirect
 
-from database import db_session
-
-from database.models.user_data import User_data
-from database.models.user_type import User_type
-
-from database.models.users import User
-from database.models.courses import Course
-from database.models.users_courses import User_courses_class
-
-from database.start_init import start_init
-
 from database.db_session import global_init
 from database.sql_functions import add_user
 
-from loginform import LoginForm
+from website.forms.loginform import LoginForm
 from config import SECRET_KEY
 
 app = Flask(__name__)
