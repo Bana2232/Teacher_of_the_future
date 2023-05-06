@@ -18,8 +18,10 @@ class ReqisterForm(FlaskForm):
     # speciality = StringField('Специальность', validators=[DataRequired()])
     # type = FieldList('1111', validators=[DataRequired()])
 
+    lfp = StringField('Введите ваше ФИО', validators=[DataRequired()])
     email = StringField('Адрес электронной почты', validators=[DataRequired()])
-    login = StringField('Логин', validators=[DataRequired()])
+
+    # login = StringField('Логин', validators=[DataRequired()])
 
     password = PasswordField('Пароль', validators=[DataRequired()])
     password_again = PasswordField('Повторите пароль', validators=[DataRequired()])

@@ -20,6 +20,17 @@ def add_user(form: ReqisterForm) -> None:
     """Добавляет пользователя в базу данных"""
     user = User()
     user_data = User_data()
+
+    # user.name = form.
+
+    db_sess = db_session.create_session()
+
+
+# исправить
+def change_user_data(form: ReqisterForm) -> None:
+    """Редактирует данные пользователя в базе данных"""
+    user = User()
+    user_data = User_data()
     db_sess = db_session.create_session()
 
     user.name = form.name.data.capitalize()
