@@ -21,9 +21,27 @@ def add_user(form: ReqisterForm) -> None:
     user = User()
     user_data = User_data()
 
-    # user.name = form.
+    user_data.set_password(form.password.data)
+    user_data.email = form.email.data
+
+    user.name = form.lfp.split()[0]
+    user.surname = form.lfp.split()[1]
+
+    if len(form.lfp.split()) == 3:
+        user.patronymic = form.lfp.split()[2]
 
     db_sess = db_session.create_session()
+
+    db_sess.add(user)
+    db_sess.commit()
+
+    user_data.user_id = user.id
+
+    user_data.set_password(form.password.data)
+    user_data.email = form.email.data
+
+    db_sess.add(user_data)
+    db_sess.commit()
 
 
 # исправить
