@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect
+from flask_login import LoginManager
 
 from database import db_session
 from database.db_session import global_init
@@ -14,6 +15,9 @@ from config import SECRET_KEY
 app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY
 
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+
 
 @app.route('/')
 def func():
@@ -25,10 +29,9 @@ def sign_in():
     form = LoginForm()
 
     if form.validate_on_submit():
-        return "2"
+        return str(check_user(form.email.data, form.password.data))
         # return redirect("main_menu.html")
 
-    print(str(check_user(form.email, form.password)))
     return render_template("sign_in_page.html")
 
 
@@ -46,7 +49,6 @@ def log_in():
 
 if __name__ == '__main__':
     global_init("../database/main_database.db")
-    # start_init()
     # db_sess = db_session.create_session()
 
     app.run(port=8080, host='127.0.0.1')
