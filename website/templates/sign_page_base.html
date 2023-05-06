@@ -32,41 +32,10 @@
 
             <form class="login100-form validate-form">
 					<span class="login100-form-title">
-						Регистрация
+						{% block title %}{% endblock %}
 					</span>
+                {% block content %}{% endblock %}
 
-                <div class="wrap-input100">
-                    <input class="input100" type="text" name="lfp" placeholder="Ваше ФИО (через пробел)">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100">
-                    <input class="input100" type="text" name="email" placeholder="Адрес электронной почты">
-                    <span class="focus-input100"></span>
-                </div>
-
-
-                <div class="wrap-input100">
-                    <input class="input100" type="text" name="pass" placeholder="Придумайте пароль">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                </div>
-
-                <div class="wrap-input100 ">
-                    <input class="input100" type="password" name="conf_pass" placeholder="Повторите пароль">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Зарегистрироваться
-                    </button>
-                </div>
 
                 <div class="text-center p-t-12">
 						<span class="txt1">

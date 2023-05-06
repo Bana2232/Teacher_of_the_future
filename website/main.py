@@ -32,10 +32,10 @@ def sign_in():
         return str(check_user(form.email.data, form.password.data))
         # return redirect("main_menu.html")
 
-    return render_template("sign_in_page.html")
+    return render_template("sign_in.html", form=form)
 
 
-@app.route("/log_in", methods=["GET", "POST"])
+@app.route("/sign_up", methods=["GET", "POST"])
 def log_in():
     form = ReqisterForm()
 
@@ -44,7 +44,7 @@ def log_in():
 
         return redirect("/")
 
-    return render_template("registration.html", form=form)
+    return render_template("sign_up.html", form=form)
 
 
 if __name__ == '__main__':
