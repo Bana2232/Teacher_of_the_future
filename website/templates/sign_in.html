@@ -17,7 +17,12 @@
     <span class="focus-input100"></span>
 </div>
 
-<div class="container-login100-form-btn">
+<div class="text-left p-t-3">
+    {{ form.remember_me.label(class="txt2") }}
+    {{ form.remember_me() }}
+</div>
+
+<div class="container-login95-form-btn">
     {{ form.submit(class="login100-form-btn") }}
 </div>
 

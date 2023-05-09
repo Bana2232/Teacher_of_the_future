@@ -1,3 +1,4 @@
+from flask_login import login_user
 from werkzeug.security import check_password_hash
 
 from database.models.user_data import User_data
@@ -6,10 +7,12 @@ from database.models.users import User
 from hashlib import sha3_256
 from uuid import uuid4
 
+from website.forms.loginform import LoginForm
 from . import db_session
 
 from website.forms.registerform import ReqisterForm
 from website.forms.personal_account_form import Personal_account_form
+
 
 def check_password(old: str, new: str):
     password, salt = old.split(":")
@@ -87,14 +90,16 @@ def change_user_data(form: Personal_account_form) -> None:
     db_sess.commit()
 
 
-def check_user(email: str, password: str) -> bool:
+def log_in_user(email: str, password: str, form: LoginForm) -> bool:
     """Проверяет данные пользователя при входе"""
 
     db_sess = db_session.create_session()
     user_data = db_sess.query(User_data).filter(User_data.email == email).first()
 
     if user_data is not None:
-        user = db_sess.query(User).filter(User.id.like(f"{user_data.user_id}"))
+        user = db_sess.query(User).filter(User.id.like(f"{user_data.user_id}")).first()
+
+        login_user(user, remember=form.remember_me.data)
 
         return check_password_hash(user_data.password, password)
 
