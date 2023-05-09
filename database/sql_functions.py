@@ -28,11 +28,11 @@ def add_user(form: ReqisterForm) -> None:
     user_data.set_password(form.password.data)
     user_data.email = form.email.data
 
-    user.name = form.lfp.split()[0].capitalize()
-    user.surname = form.lfp.split()[1].capitalize()
+    user.name = form.lfp.data.split()[0].capitalize()
+    user.surname = form.lfp.data.split()[1].capitalize()
 
-    if len(form.lfp.split()) == 3:
-        user.patronymic = form.lfp.split()[2].capitalize()
+    if len(form.lfp.data.split()) == 3:
+        user.patronymic = form.lfp.data.split()[2].capitalize()
 
     db_sess = db_session.create_session()
 

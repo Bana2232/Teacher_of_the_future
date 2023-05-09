@@ -1,3 +1,4 @@
+import flask_login
 from flask import Flask, request, render_template, redirect
 from flask_login import LoginManager, login_required, logout_user, login_user
 
@@ -28,7 +29,7 @@ def load_user(user_id):
 @app.route("/")
 @login_required
 def main_menu():
-    return f"Здравствуйте, {4}"
+    return f"Здравствуйте, {flask_login.current_user.name} {flask_login.current_user.patronymic}"
     # return render_template("index.html")
 
 
@@ -72,5 +73,4 @@ def log_in():
 if __name__ == '__main__':
     global_init("../database/main_database.db")
     # db_sess = db_session.create_session()
-
     app.run(port=8080, host='127.0.0.1')
