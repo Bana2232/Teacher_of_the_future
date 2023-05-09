@@ -13,11 +13,17 @@ from config import SECRET_KEY
 app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY
 
+
 # login_manager = LoginManager()
 # login_manager.init_app(app)
 
 
 @app.route('/')
+def func():
+    return render_template("index.html")
+
+
+@app.route('/main_menu')
 def func():
     return render_template("index.html")
 
@@ -28,7 +34,7 @@ def sign_in():
 
     if form.validate_on_submit():
         if check_user(form.email.data, form.password.data):
-            return redirect("main_menu.html")
+            return redirect("/main_menu")
 
         return "Ты кого обмануть пытался?"
 
