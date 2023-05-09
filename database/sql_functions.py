@@ -7,8 +7,9 @@ from hashlib import sha3_256
 from uuid import uuid4
 
 from . import db_session
-from website.forms.registerform import ReqisterForm
 
+from website.forms.registerform import ReqisterForm
+from website.forms.personal_account_form import Personal_account_form
 
 def check_password(old: str, new: str):
     password, salt = old.split(":")
@@ -24,11 +25,11 @@ def add_user(form: ReqisterForm) -> None:
     user_data.set_password(form.password.data)
     user_data.email = form.email.data
 
-    user.name = form.lfp.split()[0]
-    user.surname = form.lfp.split()[1]
+    user.name = form.lfp.split()[0].capitalize()
+    user.surname = form.lfp.split()[1].capitalize()
 
     if len(form.lfp.split()) == 3:
-        user.patronymic = form.lfp.split()[2]
+        user.patronymic = form.lfp.split()[2].capitalize()
 
     db_sess = db_session.create_session()
 
@@ -45,7 +46,7 @@ def add_user(form: ReqisterForm) -> None:
 
 
 # исправить
-def change_user_data(form: ReqisterForm) -> None:
+def change_user_data(form: Personal_account_form) -> None:
     """Редактирует данные пользователя в базе данных"""
     user = User()
     user_data = User_data()
@@ -92,6 +93,7 @@ def check_user(email: str, password: str) -> bool:
     db_sess = db_session.create_session()
     user_data = db_sess.query(User_data).filter(User_data.email == email).first()
     print(user_data)
+
     if user_data is not None:
         user = db_sess.query(User).filter(User.id == user_data.user_id)
         return check_password_hash(user_data.password, password)

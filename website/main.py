@@ -21,7 +21,7 @@ app.config["SECRET_KEY"] = SECRET_KEY
 
 @app.route('/')
 def func():
-    return "Главное меню"
+    return render_template("index.html")
 
 
 @app.route('/sign_in', methods=['POST', 'GET'])

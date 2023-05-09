@@ -17,19 +17,19 @@ class User(SqlAlchemyBase):
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False, index=True)
     patronymic = sqlalchemy.Column(sqlalchemy.String, nullable=True, default="doesn't have")
 
-    date = sqlalchemy.Column(sqlalchemy.Date, nullable=False)
-    registration_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=False, default=datetime.now)
+    date = sqlalchemy.Column(sqlalchemy.Date, nullable=True)
+    registration_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True, default=datetime.now)
 
-    education = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Education.id"), nullable=False)
-    edu_name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
+    education = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Education.id"), nullable=True)
+    edu_name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     place_of_work = sqlalchemy.Column(sqlalchemy.String, default="doesn't work")
     position_at_work = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     teacher_category = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("Teacher_category.id"),
-                                         nullable=False)
-    speciality = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_type.id"), nullable=False)
+                                         nullable=True)
+    speciality = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    type = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("User_type.id"), nullable=True)
 
     data = orm.relationship("User_data", back_populates="user")
 
