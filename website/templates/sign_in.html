@@ -3,6 +3,10 @@
 {% block title %} Вход {% endblock %}
 
 {% block content %}
+<div>
+    {{ form.csrf_token }}
+</div>
+
 <div class="wrap-input100">
     {{ form.email(class="input100", type="text", placeholder="Электронная почта") }}
     <span class="focus-input100"></span>

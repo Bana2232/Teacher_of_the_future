@@ -92,10 +92,10 @@ def check_user(email: str, password: str) -> bool:
 
     db_sess = db_session.create_session()
     user_data = db_sess.query(User_data).filter(User_data.email == email).first()
-    print(user_data)
 
     if user_data is not None:
-        user = db_sess.query(User).filter(User.id == user_data.user_id)
+        user = db_sess.query(User).filter(User.id.like(f"{user_data.user_id}"))
+
         return check_password_hash(user_data.password, password)
 
     return False

@@ -1,14 +1,12 @@
 from flask import Flask, request, render_template, redirect
 from flask_login import LoginManager
 
-from database import db_session
 from database.db_session import global_init
-from database.models.user_data import User_data
-from database.models.users import User
 from database.sql_functions import add_user, check_user
 
 from website.forms.registerform import ReqisterForm
 from website.forms.loginform import LoginForm
+from website.forms.personal_account_form import Personal_account_form
 
 from config import SECRET_KEY
 
@@ -29,8 +27,10 @@ def sign_in():
     form = LoginForm()
 
     if form.validate_on_submit():
-        return str(check_user(form.email.data, form.password.data))
-        # return redirect("main_menu.html")
+        if check_user(form.email.data, form.password.data):
+            return redirect("main_menu.html")
+
+        return "Ты кого обмануть пытался?"
 
     return render_template("sign_in.html", form=form)
 
